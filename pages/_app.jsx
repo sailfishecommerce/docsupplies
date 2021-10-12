@@ -43,10 +43,6 @@ function App({ Component, pageProps }) {
     return (
         <CookiesProvider>
             <MasterLayout>
-                <h5>Product Name: {name}</h5>
-                <h5>Slug: {slug}</h5>
-                <h5>Description: {description}</h5>
-                <h5>Price: {price}</h5>
                 <Component {...pageProps} />
             </MasterLayout>
         </CookiesProvider>
