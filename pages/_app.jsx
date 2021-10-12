@@ -37,14 +37,16 @@ function App({ Component, pageProps }) {
             setName(response.results[0].name);
             setSlug(response.results[0].slug);
             setDesc(response.results[0].description);
+            setPrice(response.results[0].price);
         })
     };
     return (
         <CookiesProvider>
             <MasterLayout>
-                <h5>{name}</h5>
-                <h5>{slug}</h5>
-                <h5>{description}</h5>
+                <h5>Product Name: {name}</h5>
+                <h5>Slug: {slug}</h5>
+                <h5>Description: {description}</h5>
+                <h5>Price: {price}</h5>
                 <Component {...pageProps} />
             </MasterLayout>
         </CookiesProvider>
