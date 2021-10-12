@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { wrapper } from "../store/store";
 import MasterLayout from "~/components/layouts/MasterLayout";
 import { CookiesProvider } from "react-cookie";
@@ -14,17 +14,38 @@ import "~/styles/scss/home-1.scss";
 import "~/styles/platform/custom.scss";
 import "~/styles/platform/themes/home-one.scss";
 import Head from "next/head";
+import swell from 'swell-js'
+swell.init('sailfish-e-commerce-limited', 'pk_392OXy2LAsQCLz7F9EQHEQ5tnVhAak6x')
 
 function App({ Component, pageProps }) {
+    const [name, setName] = useState('');
+    const [slug, setSlug] = useState('');
+    const [description, setDesc] = useState('');
+    const [price, setPrice] = useState('');
     useEffect(() => {
         setTimeout(function () {
             document.getElementById("__next").classList.add("ps-loaded");
         }, 100);
+        getProduct();
     });
-
+    const getProduct = async () => {
+        await swell.products.list({
+            category: '',
+            limit: 25,
+            page: 1
+        }).then((response) => {
+            console.log(response.results[0])
+            setName(response.results[0].name);
+            setSlug(response.results[0].slug);
+            setDesc(response.results[0].description);
+        })
+    };
     return (
         <CookiesProvider>
             <MasterLayout>
+                <h5>{name}</h5>
+                <h5>{slug}</h5>
+                <h5>{description}</h5>
                 <Component {...pageProps} />
             </MasterLayout>
         </CookiesProvider>
