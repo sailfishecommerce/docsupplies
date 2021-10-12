@@ -34,7 +34,6 @@ function App({ Component, pageProps }) {
             limit: 25,
             page: 1
         }).then((response) => {
-            console.log(response.results[0])
             setName(response.results[0].name);
             setSlug(response.results[0].slug);
             setDesc(response.results[0].description);
